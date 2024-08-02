@@ -17,7 +17,7 @@ places = names_file['المركز'].tolist()
 
 # Paths to certificate images
 certificatesImages = [
-    './png-certificates/pass.png',
+    './png-certificates/0.jpeg',
     './png-certificates/1.jpeg',
     './png-certificates/2.jpeg',
     './png-certificates/3.jpeg',
@@ -29,17 +29,7 @@ GOLD = '#000'
 RED = '#cf403a'
 FONT = './fonts/Changa.ttf'
 
-def print_pass_certificate(name, index):
-    img = Image.open(certificatesImages[0])
-    image_editable = ImageDraw.Draw(img)
-    # Reshape and apply bidi algorithm for correct Arabic display
-    text = reshaper.reshape(name)
-    font = ImageFont.truetype(FONT, 60)
-    poss = (250, 300)
-    image_editable.text(poss, text, font=font, fill=RED)
-    img.save("./output/pass/" + str(index) + "_" + name + ".png")
-
-def print_place_certificate(place, name):
+def print_certificate(place, name):
     img = Image.open(certificatesImages[place])
     image_editable = ImageDraw.Draw(img)
     # Reshape and apply bidi algorithm for correct Arabic display
@@ -58,7 +48,6 @@ def print_place_certificate(place, name):
 for index, name in enumerate(names):
     place = places[index]
     if place > 3:
-        print('ok')
-        # print_pass_certificate(name, index)
+        print_certificate(0, name)
     else:
-        print_place_certificate(place, name)
+        print_certificate(place, name)
